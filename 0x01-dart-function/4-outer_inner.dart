@@ -1,10 +1,8 @@
 void outer(String name, String id) {
-  String result = inner();
-  List<String> nameParts = name.split(" ");
-  String initials = nameParts[0][0].toUpperCase() + "." + nameParts[1];
-  print("Hello Agent $initials your id is $id");
-}
+  List<String> names = name.split(" ");
+  String inner() {
+    return "Hello Agent ${names[1].substring(0, 1)}.${names[0]} your id is ${id}";
+  }
 
-String inner() {
-  return "001";
+  print(inner());
 }
