@@ -1,32 +1,33 @@
-int whoWins(Map<String, int> teamA, Map<String, int> teamB) {
-  int teamAPoints = 0;
-  int teamBPoints = 0;
+int whoWins(Map<String, int> team1, Map<String, int> team2) {
+  int team1Score = 0;
+  int team2Score = 0;
 
-  teamA.forEach((shotType, shotCount) {
-    if (shotType == 'freeThrow') {
-      teamAPoints += shotCount;
-    } else if (shotType == 'twoPointer') {
-      teamAPoints += 2 * shotCount;
-    } else if (shotType == 'threePointer') {
-      teamAPoints += 3 * shotCount;
+  team1.forEach((shotType, score) {
+    if (shotType == 'Free throws') {
+      team1Score += score * 1;
+    } else if (shotType == '2 pointers') {
+      team1Score += score * 2;
+    } else if (shotType == '3 pointers') {
+      team1Score += score * 3;
     }
   });
 
-  teamB.forEach((shotType, shotCount) {
-    if (shotType == 'freeThrow') {
-      teamBPoints += shotCount;
-    } else if (shotType == 'twoPointer') {
-      teamBPoints += 2 * shotCount;
-    } else if (shotType == 'threePointer') {
-      teamBPoints += 3 * shotCount;
+  team2.forEach((shotType, score) {
+    if (shotType == 'Free throws') {
+      team2Score += score * 1;
+    } else if (shotType == '2 pointers') {
+      team2Score += score * 2;
+    } else if (shotType == '3 pointers') {
+      team2Score += score * 3;
     }
   });
 
-  if (teamAPoints > teamBPoints) {
-    return 1;
-  } else if (teamAPoints < teamBPoints) {
-    return 2;
-  } else {
+  if (team1Score == team2Score) {
     return 0;
+  } else if (team1Score > team2Score) {
+    return 1;
+  } else if (team1Score < team2Score) {
+    return 2;
   }
+  return 0;
 }
