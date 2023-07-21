@@ -31,6 +31,49 @@ class Password {
 
   @override
   String toString() {
-    return "Password: ${isValid()}"; // Call the isValid() method here
+    return "Your Password is: $_password"; // Call the isValid() method here
+  }
+}
+
+class User {
+  int id;
+  String name;
+  int age;
+  double height;
+  String? user_password; // Nullable password property
+  Password? password; // Nullable instance of the Password class
+
+  User({
+    required this.id,
+    required this.name,
+    required this.age,
+    required this.height,
+    required String? user_password,
+  }) : password =
+            user_password != null ? Password(password: user_password) : null;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'age': age,
+      'height': height,
+      'user_password': user_password,
+    };
+  }
+
+  static User fromJson(Map<dynamic, dynamic> userJson) {
+    return User(
+      id: userJson['id'],
+      name: userJson['name'],
+      age: userJson['age'],
+      height: userJson['height'],
+      user_password: userJson['user_password'],
+    );
+  }
+
+  @override
+  String toString() {
+    return "User(id : $id ,name: $name, age: $age, height: $height, ${password?.toString() ?? 'Password: false'})";
   }
 }
